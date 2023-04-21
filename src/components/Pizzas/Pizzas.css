@@ -1,0 +1,11 @@
+.menuHeader {
+    text-align: center;
+    font-family: 'Roboto';
+}
+
+.nextButton {
+    font-size: larger;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+}

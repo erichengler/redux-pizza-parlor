@@ -1,6 +1,12 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from 'react-router-dom';
 import './CustomerForm.css'
+import ProgressBar from "../ProgressBar/ProgressBar";
+import TextField from '@mui/material/TextField';
+import { FormLabel } from '@mui/material';
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 
 function CustomerForm() {
 
@@ -40,36 +46,75 @@ function CustomerForm() {
     // To next page '/checkout'
     const nextPage = (event) => {
         event.preventDefault();
-            history.push('/checkout');
-        }
+        history.push('/checkout');
+    }
 
     return (
-        <div className="customerForm">
-                <h3>Customer Information</h3>
-                <form onSubmit={nextPage}>
-                    <input onChange={handleChangeName} type="text" placeholder="Name" required />
+        <>
+            <ProgressBar currentStep={1} />
+            <Grid container direction="column" alignItems="center">
+                <Card sx={{
+                    paddingTop: '15px',
+                    paddingBottom: '15px',
+                    width: '400px',
+                    textAlign: 'center'
+                }}>
+                    <h2>Customer Information</h2>
+                        <br />
+                    <form onSubmit={nextPage}>
+                        <TextField onChange={handleChangeName}
+                            size="small"
+                            type="text"
+                            placeholder="Name"
+                            required />
                         <br /><br />
-                    <input onChange={handleChangeAddress} type="text" placeholder="Street Address" required />
+                        <TextField onChange={handleChangeAddress}
+                            size="small"
+                            type="text"
+                            placeholder="Street Address"
+                            required />
                         <br /><br />
-                    <input onChange={handleChangeCity} type="text" placeholder="City" required />
+                        <TextField onChange={handleChangeCity}
+                            size="small" type="text"
+                            placeholder="City"
+                            required />
                         <br /><br />
-                    <input onChange={handleChangeZip} type="text" placeholder="Zip" required />
+                        <TextField onChange={handleChangeZip}
+                            size="small"
+                            type="text"
+                            placeholder="Zip"
+                            required />
                         <br /><br />
-                    <div className="radioButtons">
-                        <label>
-                            <input onClick={setOrderType} type="radio" name="orderType" value="pickup" required />
+                        <FormLabel>
+                            <input onClick={setOrderType}
+                                type="radio"
+                                name="orderType"
+                                value="pickup"
+                                required />
                             Pickup
-                        </label>
-                            <br /><br />
-                        <label>
-                            <input onClick={setOrderType} type="radio" name="orderType" value="delivery" />
+                        </FormLabel>
+                        <FormLabel>
+                            <input onClick={setOrderType}
+                                type="radio"
+                                name="orderType"
+                                value="delivery" />
                             Delivery
-                        </label>
-                            <br /><br />
-                            <input type="submit" />
-                    </div>
-                </form>
-        </div>
+                        </FormLabel>
+                        <br /><br />
+                        <FormLabel>
+                            <Button
+                                variant="outlined"
+                                type="submit"
+                                onSubmit={nextPage}>
+                                Submit
+                            </Button>
+                        </FormLabel>
+                    </form>
+                    <br />
+                </Card>
+            </Grid>
+
+        </>
     )
 }
 

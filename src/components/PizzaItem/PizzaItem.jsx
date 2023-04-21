@@ -1,6 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
-import './PizzaItem.css';
-
+// MUI Imports
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import Grid from '@mui/material/Grid';
 
 function PizzaItem({ pizza }) {
     const dispatch = useDispatch();
@@ -22,7 +28,7 @@ function PizzaItem({ pizza }) {
                 if (pizza.id === cart[i].id) {
                     alert(`Please select only 1 of each picha.`);
                     return;
-                }                     
+                }
             }
             dispatch({ type: 'ADD_TO_CART', payload: pizza });
             totalPrice += Number(pizza.price)
@@ -31,28 +37,56 @@ function PizzaItem({ pizza }) {
             dispatch({ type: 'ADD_TO_CART', payload: pizza });
             totalPrice += Number(pizza.price)
             pizza.quantity = 1
-            
+
         }
 
         findTotal();
         console.log(`ey yo, i'mma total cart total cart`, cartTotal)
-        
+
     };
 
 
 
     return (
-        <li className="pizza-item" >
-            <h3 className="pizza-name" >{pizza.name}</h3>
-            <br />
-            "{pizza.description}"
-            <br />
-            - {pizza.price}
-            <br />
-            <img className="pizza-image" src={pizza.image_path} />
-            <br />
-            <button onClick={addPizzaToCart}> Add to Cart</button>
-        </li>
+        <Grid sx={{ mx: '20px', my: '20px' }}>
+            <Card sx={{
+                width: 450, height: 400,
+                display: 'flex',
+                flexDirection: 'column'
+            }}>
+                <CardMedia
+                    sx={{
+                        height: 200,
+                        margin: '10px',
+                        borderRadius: '2%'
+                    }}
+                    image={pizza.image_path}
+                />
+                <CardContent sx={{ height: 100 }}>
+                    <Typography sx={{ float: 'right' }}>
+                        ${pizza.price}
+                    </Typography>
+                    <Typography
+                        gutterBottom
+                        variant="h5"
+                        component="div">
+                        {pizza.name}
+                    </Typography>
+                    <Typography
+                        variant="body"
+                        color="text.secondary">
+                        {pizza.description}
+                    </Typography>
+                    <br />
+                </CardContent>
+                <CardActions sx={{ justifyContent: 'right' }}>
+                    <Button
+                        onClick={addPizzaToCart}>
+                        Add to Cart
+                    </Button>
+                </CardActions>
+            </Card>
+        </Grid>
     )
 };
 

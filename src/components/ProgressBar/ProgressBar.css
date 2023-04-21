@@ -1,0 +1,5 @@
+.stepperContainer {
+    width: fit-content;
+    display:block;
+    margin: 0 auto; 
+}

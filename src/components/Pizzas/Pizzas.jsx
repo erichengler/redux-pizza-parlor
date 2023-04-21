@@ -3,6 +3,13 @@ import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import PizzaList from '../PizzaList/PizzaList.jsx';
 import { useHistory } from 'react-router-dom';
+import ProgressBar from '../ProgressBar/ProgressBar.jsx';
+import './Pizzas.css';
+import Button from '@mui/material/Button';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 function Pizzas() {
   const dispatch = useDispatch();
@@ -10,7 +17,7 @@ function Pizzas() {
   const history = useHistory();
 
   const nextPage = () => {
-    if (cartTotal === 0 ) {
+    if (cartTotal === 0) {
       alert(`Please select a Pizza! :D`)
       return;
     } else {
@@ -32,13 +39,20 @@ function Pizzas() {
     })
   };
 
-  return(
-
-    <div>
-      <h2> Lookit them Pizzas! </h2>
-      <PizzaList />
-      <button onClick={nextPage}>Next Page</button>
-    </div>
+  return (
+    <>
+      <ProgressBar currentStep={0}/>
+      <h2 className="menuHeader">Our Menu</h2>
+      <PizzaList /><br />
+      <div className="nextButton">
+        <Button
+          variant="outlined"
+          onClick={nextPage}>
+          Next Page
+        </Button>
+      </div>
+      <br /><br />
+    </>
   )
 }
 
