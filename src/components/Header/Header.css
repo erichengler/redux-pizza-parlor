@@ -13,6 +13,7 @@
     float: left;
     font-size: 2em;
     font-family: 'Roboto';
+    cursor: pointer;
 }
 
 .cart-total {
