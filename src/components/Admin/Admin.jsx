@@ -31,10 +31,11 @@ function Admin() {
         <div className="orderList">
             <h2>Order List</h2>
             <Grid container direction="column" alignItems="center">
-            <Table sx={{ maxWidth: 650 }}>
+            <Table sx={{ maxWidth: 700 }}>
                 <TableHead>
                     <TableRow>
                         <TableCell>Customer Name</TableCell>
+                        <TableCell align="right">Type</TableCell>
                         <TableCell align="right">Time</TableCell>
                         <TableCell align="right">Total</TableCell>
                     </TableRow>
@@ -44,6 +45,7 @@ function Admin() {
                         orders.map((order) => (
                             <TableRow key={order.id}>
                                 <TableCell>{order.customer_name}</TableCell>
+                                <TableCell align="right">{order.type}</TableCell>
                                 <TableCell align="right">
                                     {(order.time).substring(5, 10)}<br />
                                     {(order.time).substring(11, 16)}
